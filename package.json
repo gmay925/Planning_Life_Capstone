@@ -1,0 +1,20 @@
+{
+  "name": "planning_life_capstone-1",
+  "version": "1.0.0",
+  "description": "Capstone project for Planner",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmay925/Planning_Life_Capstone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gmay925/Planning_Life_Capstone/issues"
+  },
+  "homepage": "https://github.com/gmay925/Planning_Life_Capstone#readme"
+}
