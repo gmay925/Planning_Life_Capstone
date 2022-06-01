@@ -4,6 +4,7 @@
   "description": "Capstone project for Planner",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/gmay925/Planning_Life_Capstone/issues"
   },
-  "homepage": "https://github.com/gmay925/Planning_Life_Capstone#readme"
+  "homepage": "https://github.com/gmay925/Planning_Life_Capstone#readme",
+  "dependencies": {
+    "nodemon": "^2.0.16"
+  }
 }
