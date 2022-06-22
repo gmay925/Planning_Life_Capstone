@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import './App.css';
+import { Container } from 'react-bootstrap';
 
 function App() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   async function registerUser(event) {
     event.preventDefault();
-    const response = await fetch('http://localhost:1337/api/register', {
+    const response = await fetch('http://localhost:3000/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -17,6 +19,7 @@ function App() {
         name,
         email,
         password,
+        confirmPassword,
       }),
     });
     const data = await response.json();
@@ -25,6 +28,7 @@ function App() {
   }
 
   return (
+      <Container>
     <div>
       <h1> Register</h1>
       <form onSubmit={registerUser}>
@@ -53,6 +57,7 @@ function App() {
         <br />
       </form>
     </div>
+    </Container>
   );
 }
 export default App;
