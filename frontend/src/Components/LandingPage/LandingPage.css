@@ -1,0 +1,25 @@
+*{
+  background: rgb(250,172,69);
+  background: linear-gradient(90deg, rgba(250,172,69,1) 0%, rgba(19,198,205,1) 35%, rgba(251,88,88,1) 100%);
+}
+h1 {
+  font-family:'Pacifico';
+  color: white;
+  animation: neon 5s infinite;
+  font-size: 5em;
+  text-align: center;
+}
+  @keyframes neon {
+    0%, 39%, 41%, 59%, 61%, 100% {
+      text-shadow: white 0 0 12px,
+      palevioletred 0 0 24px,
+      palevioletred 0 0 36px;
+    }
+    40%, 60% {
+      text-shadow: none;
+    } 
+  }
+h2 {
+  
+
+  }
