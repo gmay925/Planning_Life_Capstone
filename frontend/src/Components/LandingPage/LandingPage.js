@@ -1,13 +1,28 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import NavBar from '../NavBar/NavBar';
 import './LandingPage.css';
 
-
 const LandingPage = () => (
-   <div>
-    <h1>Planning Life </h1>
-    <h2>Are you ready to get on top of your future with our daily planner that allows for you to:</h2>
-    <ul>Set Goals</ul>
-    <ul>Journal</ul>
-    </div>
+  <div className="landing">
+    <NavBar />
+    <h1>Planning Life</h1>
+    <h2>Getting your vision down is the first step in reaching a goal. 
+      Start your free account today to access a planner that includes:</h2>
+    <li>Goals</li>
+    <li>Journal</li>
+    <li>Health Tracking</li>
+    <li>Task</li>
+    <li>
+      <Link id="sign-up" to="/signup"><button className="signUp" variant="outline-light" type="submit">Sign Up Today</button>
+    </Link> </li>
+    <li>
+    <Link id="user-login" to="/login">
+      <button className="userDropDown" variant="outline-light" type="submit">
+         Log In
+       </button>
+      </Link> </li>
+  </div> 
 );
 
 export default LandingPage;
