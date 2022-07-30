@@ -1,10 +1,15 @@
 *{
-  background: linear-gradient(90deg, rgb(222, 205, 182) 10%, rgb(161, 216, 218) 35%, rgb(231, 157, 157) 100%);
-}
+  background: lightcyan;}
+  #dream {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    
+  }
 h1 {
   font-family: 'Cedarville Cursive', cursive;
-  color: white;
-  animation: neon 5s infinite;
+  color: gray;
   font-size: 5em;
   text-align: center;
 }
@@ -18,10 +23,15 @@ h1 {
       text-shadow: none;
     } 
   }
-  h2, li {
+  h2 {
     font-family:'Pacifico';
-    color: white;
+    color: gray;
     animation: neon 5s infinite;
     font-size: 2em;
     text-align: center;
+  }
+  li {
+    font-family: 'Pacifico';
+    color: gray;
+    font-size: x-large;
   }
