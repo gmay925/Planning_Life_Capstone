@@ -3,15 +3,12 @@
 /* eslint-disable prefer-template */
 /* eslint-disable no-use-before-define */
 /* eslint-disable import/order */
-const app = require('../app');
-
-
 const mongoose = require('mongoose');
 require('dotenv').config();
 /**
  * Module dependencies.
  */
-
+const app = require('../app');
 const debug = require('debug')('api:server');
 const http = require('http');
 
