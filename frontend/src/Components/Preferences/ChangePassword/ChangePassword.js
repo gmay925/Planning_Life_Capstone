@@ -16,7 +16,7 @@ export default function ChangePassword() {
 
   const [hasTypedNewPassword, setHasTypedNewPassword] = useState(false);
   const [hasTypedConfirmPassword, setHasTypedConfirmPassword] = useState(false);
-  const isValidNewPassword = newPassword.length >= 8;
+  const isValidNewPassword = newPassword.length >= 6;
   const isValidConfirm = confirmPassword === newPassword;
   const isAllValid = isValidNewPassword && isValidConfirm;
 
@@ -25,7 +25,7 @@ export default function ChangePassword() {
   };
 
   const changePasswordSubmit = async (body) => {
-    const res = await fetch('/changePassword', {
+    const res = await fetch('/preferences', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),

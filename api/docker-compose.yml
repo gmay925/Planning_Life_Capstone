@@ -2,14 +2,13 @@ version: '3'
 
 services:
   mongodb:
-    container_name: "planning"
-    image: mongo
+    image: planner
     restart: always
     ports:
       - '27017:27017'
     environment:
-      MONGO_INITDB_ROOT_USERNAME: plan
-      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_ROOT_USERNAME: gmay925
+      MONGO_INITDB_ROOT_PASSWORD: 2022password
     volumes:
       - ./mongo/data:/data/db
     

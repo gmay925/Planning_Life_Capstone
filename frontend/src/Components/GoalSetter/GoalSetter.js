@@ -1,34 +1,64 @@
 import React from "react";
 import NavBar from "../NavBar/NavBar";
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 import Form from 'react-bootstrap/Form';
+import { Button } from "react-bootstrap";
+
 
 export default function GoalSetter() {
-  const [goals, setGoals] = useState('');
+  const [goals, setGoals] = useState([]);
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  async function submitGoals(body) {
-    const res = await fetch('/goalsetter', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
-  const json = await res.json();
-  if (res.ok) {
-    return json;
+  async function submitGoalData(body) {
+    const res = await fetch('/goals', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    const json = await res.json();
+    if (res.ok) {
+      return json;
+    }
+    // eslint-disable-next-line
+    throw { status: res.status, message: json.message };
   }
-  // eslint-disable-next-line
-  throw { status: res.status, message: json.message };
-}
+
+  // const updateGoals = async (body) => {
+  //   const res = await fetch('/goal', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(body),
+  //   });
+  //   const json = await res.json();
+  //   if (res.ok) {
+  //     return true;
+  //   }
+  //   // eslint-disable-next-line no-throw-literal
+  //   throw { status: res.status, message: json.message };
+  // };
+
+  // const submitGoals = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     await updateGoals({
+  //       goals: [...new Set([...goals])]
+  //     });
+  //   } catch (e) {
+  //     if (e.status === 401) {
+  //       navigate('/logout');
+  //     }
+  //   }
+  // };
 
 const onSubmit = async (event) => {
   event.preventDefault();
   try {
-    await submitGoals({
-      goals,
+    await submitGoalData({
+      goal: String(goals),
      });
   } catch (error) {
     setMessage(error.message);
@@ -37,16 +67,37 @@ const onSubmit = async (event) => {
     }
   }
 };
+// const getGoals = async () => {
+//   const res = await fetch('/goal');
+//   const json = await res.json();
+
+//   if (res.ok) {
+//     return json;
+//   }
+
+//   // eslint-disable-next-line no-throw-literal
+//   throw { status: res.status, message: json.message };
+// };
+
+// useEffect(() => {
+//   getGoals().then((data) => {
+//     setGoals(data.goals.filter);
+//   }).catch((e) => {
+//     if (e.status === 401) {
+//       navigate('/logout');
+//     }
+//   });
+// }, []);
+
   return (
     <>
     <NavBar />
-    <div className="goal-container">
-      <h1>Goals</h1>
-      <p>Where do you want to see yourself in the next 5 years? How about in the next 6 months?
-        Rather long term or short, think about where you want to be to begin setting your goals today!</p> 
-      <Container style={{ marginTop: '1rem' }}>
+      <h1 className="tect-center mb-2 mb-2 pt-2"> Goal Setter </h1>
+      <div className="goal-main">
+        <div className="goal-left">
+      <Container style={{ marginTop: '2rem' }}>
         <Form onSubmit={onSubmit} className='text-center'>
-          <Form.FormLabel>Goal Setter</Form.FormLabel>
+          <Form.Label>Goal Setter</Form.Label>
           <Form.Control
           required
           type="string"
@@ -57,10 +108,15 @@ const onSubmit = async (event) => {
           />
 
         </Form>
+        <Link to='/'>
+              <Button variant="secondary" type="submit">
+              Return Home
+              </Button>
+            </Link>
 
       </Container>
-      
+      </div>
     </div>
     </>
-  )
+  );
 }

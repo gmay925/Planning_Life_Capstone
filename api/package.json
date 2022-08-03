@@ -18,12 +18,12 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.4.4",
+    "mongoose": "^6.5.0",
+    "morgan": "^1.10.0",
     "path": "^0.12.7",
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "morgan": "^1.10.0",
     "nodemon": "^2.0.19"
   }
 }

@@ -5,6 +5,7 @@ import SignUp from "./Components/SignUp/SignUp";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import Login from "./Components/Login/Login";
+import Preferences from "./Components/Preferences/Preferences";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <Route exact path="/" element={<LandingPage />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/signup" element={<SignUp />} />
-      <Route exact path="/goalsetter" element={<GoalSetter />} />
+      <Route exact path="/goal" element={<GoalSetter />} />
+      <Route exact path="/preferences" element={<Preferences />} />
     </Routes>
  
   );

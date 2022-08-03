@@ -1,19 +1,18 @@
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import DropdownButton from 'react-bootstrap/DropdownButton'
-import { Dropdown } from 'react-day-picker';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
+import Button from 'react-bootstrap/Button';
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import { Dropdown } from 'react-day-picker';
 import React, { useState, useEffect } from 'react';
 
 const NavBar = () => {
   const [name, setName] = useState('');
-  // const [userIcon, setUserIcon] = useState('');
 
   const getUser = async () => {
-    const res = await fetch('/goalsetter');
+    const res = await fetch('/preferences');
     const json = await res.json();
     return json;
   };
@@ -29,37 +28,37 @@ const NavBar = () => {
     <Container className="navbar-container">
       <Navbar id="nav">
         <Navbar.Brand href="/" id="nav-title">
-          <h1>Planning Life</h1>
-          <h2>Creating a life you love by planning! </h2>
+         Planning Life
         </Navbar.Brand>
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text id="nav-text">
             {!name && (
               <Link id="user-login" to="/login">
-                <Button variant="success" type="submit">
+                <Button 
+                className="userDropDown"
+                variant="outline-light" 
+                type="submit">
                   Log In
                 </Button>
               </Link>
             )}
             {name && (
-              <Link id="user-submit" to="/signup">
-                <Button variant="outline-light" type="submit">
-                  {name}
-                </Button>
-              </Link>
-            )}
-            {name && (
-              <DropdownButton
-                className="userDropDown"
-                as={ButtonGroup}
-                variant="outline-light"
-                title={
-                  <>
-                   {name}
-                  </>
-                }
-                id="bg-nested-dropdown"
+              <DropdownButton 
+              className="userDropDown"
+              as={ButtonGroup}
+              variant="outline-light"
+              title={
+                <>
+                {name}
+                </>
+              }
+              id="bg-nested-dropdown"
               >
+                <Link className="dropdown-links" id="user-preferences" to="/preferences">
+                  <Dropdown.Item as="button" eventKey="1">
+                    Preferences
+                  </Dropdown.Item>
+                </Link>
                 <Link className="dropdown-links" id="user-goalsetter" to="/goalsetter">
                   <Dropdown.Item as="button" eventKey="1">
                     Goal Setter

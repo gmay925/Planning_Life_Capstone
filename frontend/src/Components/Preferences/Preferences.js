@@ -1,9 +1,7 @@
 import React from 'react';
 import PersonalInformation from './PersonalInformation/PersonalInformation';
-import Delivery from './Delivery/Delivery';
-import Icons from './Icons/Icons';
+import PlannerInformation from './PlannerInformation';
 import './Preferences.css';
-import Notification from './Notification/Notification';
 import ChangePassword from './ChangePassword/ChangePassword';
 import NavBar from '../NavBar/NavBar';
 
@@ -19,12 +17,8 @@ export default function Preferences() {
             <ChangePassword />
           </div>
           <div className="pref-center-bottom">
-            <Delivery />
-            <Notification />
+            <PlannerInformation />
           </div>
-        </div>
-        <div className="pref-right">
-          <Icons />
         </div>
       </div>
     </>

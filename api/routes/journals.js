@@ -1,27 +1,24 @@
-const express = require('express');
-const { 
-  getJournals,
-   getJournal, 
-   createJournal, 
-   deleteJournal, 
-   updateJournal,
-} = require('../controllers/journalController');
+// const { eachWeekOfInterval } = require('date-fns');
+// const express = require('express');
 
-const router = express.Router();
 
-// GET all journals
-router.get('/', getJournals);
+// const router = express.Router();
 
-// GET single workout
-router.get('/:id', getJournal);
+// // GET all journals
+// router.get('/', (req, res) => {
+//   res.json({ journals: req.user.journals || [] });
+// });
 
-// POST new journal
-router.post('/', createJournal);
+// // GET single workout
+// router.get('/:id', getJournal);
 
-// DELETE a journal
-router.delete('/:id', deleteJournal);
+// // POST new journal
+// router.post('/', createJournal);
 
-// UPDATE a journal
-router.patch('/:id', updateJournal);
+// // DELETE a journal
+// router.delete('/:id', deleteJournal);
 
-module.exports = router;
+// // UPDATE a journal
+// router.patch('/:id', updateJournal);
+
+// module.exports = router;

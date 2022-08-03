@@ -7,7 +7,8 @@ const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const goalSetterRouter = require('./routes/goalsetter');
+const goalRouter = require('./routes/goals');
+const postsRouter = require('./routes/posts');
 
 const app = express();
 
@@ -24,8 +25,8 @@ app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/goalsetter', goalSetterRouter);
-
+app.use('/goals', goalsRouter);
+app.use('/posts', postsRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

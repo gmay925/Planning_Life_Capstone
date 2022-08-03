@@ -18,6 +18,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  phoneNumber: {
+    type: String,
+    require: true,
+  },
+  address: {
+    type: String,
+    require: false,
+  },
 });
 
 module.exports = mongoose.model('Users', UserSchema);

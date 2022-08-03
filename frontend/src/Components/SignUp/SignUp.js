@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import validator from 'validator';
 import { DayPicker, useInput } from 'react-day-picker';
+import { formatPhoneNumber } from '../utils/phone-number';
 import 'react-day-picker/dist/style.css';
 import NavBar from '../NavBar/NavBar';
 
@@ -38,21 +39,23 @@ export default function SignUp() {
   const [email, setEmail] = useState(' ');
   const [password, setPassword] = useState(' ');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [hasTypedName, setHasTypedName] = useState(false);
   const [hasTypedEmail, setHasTypedEmail] = useState(false);
   const [hasTypedPassword, setHasTypedPassword] = useState(false);
   const [hasTypedConfirmPassword, setHasTypedConfirmPassword] = useState(false);
-  const [hasBirthday, setHasBirthday] = useState(false);
+  const [hasTypedPhoneNumber, setHasTypedPhoneNumber] = useState(false);
+  const [message, setMessage] = useState('');
   const isValidName = Boolean(name);
   const isValidEmail = validator.isEmail(email);
   const isValidPassword = password.length >= 6;
   const isValidConfirm = confirmPassword === password;
-  const isValidBirthday = Boolean(hasBirthday);
+  const isValidPhone = validator.isMobilePhone(phoneNumber);
   const allValid = isValidName
     && isValidEmail
     && isValidPassword
     && isValidConfirm
-    && isValidBirthday
+    && isValidPhone;
 
   const footer = (
     <label>
@@ -64,6 +67,12 @@ export default function SignUp() {
     </label>
   );
 
+  useEffect(() => {
+    if (localStorage.getItem('loggedIn') === 'true' ) {
+      navigate('/signup');
+    }
+  }, [navigate]);
+
   const onSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -73,9 +82,11 @@ export default function SignUp() {
         password,
         confirmPassword,
         birthday: inputProps.value,
+        phoneNumber,
       });
       navigate('/');
     } catch (error) {
+      setMessage(error.message);
 
     }
   };
@@ -115,7 +126,7 @@ export default function SignUp() {
               placeholder="Enter email"
             />
             <Form.Control.Feedback type="invalid">
-              Please enter a valid email
+              Must enter a valid email
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlid="formBasicPassword">
@@ -131,7 +142,7 @@ export default function SignUp() {
               placeholder="Enter Password"
             />
             <Form.Control.Feedback type="invalid">
-            Please enter a password with at least 6 characters
+            Must enter a password with at least 6 characters
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -155,11 +166,29 @@ export default function SignUp() {
             <Form.Label>Select Birthday *Must be at least 13*</Form.Label>
             <DayPicker
               {...dayPickerProps}
+              mode="single"
               footer={footer}
               fromYear={1900}
               toYear={2011}
               captionLayout="dropdown"
               />
+          </Form.Group>
+          <Form.Group className="mb-3" controlid="phoneNumber">
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control
+              required
+              isInvalid={hasTypedPhoneNumber && !isValidPhone}
+              value={phoneNumber}
+              onChange={(e) => {
+                setPhoneNumber(formatPhoneNumber(e.target.value));
+                setHasTypedPhoneNumber(true);
+              }}
+              type="tel"
+              placeholder="(123) 456-7890"
+            />
+            <Form.Control.Feedback type="invalid">
+            Please enter a valid phone number
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group>
           <div className='text-center'>

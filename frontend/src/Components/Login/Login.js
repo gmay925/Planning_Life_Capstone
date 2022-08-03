@@ -102,7 +102,7 @@ export default function Login () {
         <p>Don't have an account?</p>
         <Link id="user-signup" to="/signup">
           <Button variant="secondary" type="submit">
-            Register
+            Sign Up
           </Button>
         </Link>
       </div>
