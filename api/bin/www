@@ -16,10 +16,10 @@ const http = require('http');
  * Get port from environment and store in Express.
  */
 
-let port = normalizePort(process.env.PORT || '3001');
+let port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-const db = "mongodb+srv://gmay925:2022password@cluster0.4wq2r.mongodb.net/?retryWrites=true&w=majority"
+const db = "mongodb://gmay925:2022password@localhost:27017/?authMechanism=DEFAULT"
 //const mongodb = process.env.MONGODB;
 
 mongoose
