@@ -9,12 +9,12 @@ import { Button } from "react-bootstrap";
 
 
 export default function GoalSetter() {
-  const [goals, setGoals] = useState([]);
+  const [goal, setGoal] = useState([]);
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
   async function submitGoalData(body) {
-    const res = await fetch('/goals', {
+    const res = await fetch('/goal', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
@@ -58,7 +58,7 @@ const onSubmit = async (event) => {
   event.preventDefault();
   try {
     await submitGoalData({
-      goal: String(goals),
+      goal: String(goal),
      });
   } catch (error) {
     setMessage(error.message);
@@ -102,7 +102,7 @@ const onSubmit = async (event) => {
           required
           type="string"
           onChange={(e) => {
-            setGoals(e.target.value);
+            setGoal(e.target.value);
           }}
           placeholder="Enter a goal"
           />

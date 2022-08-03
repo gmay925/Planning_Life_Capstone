@@ -192,7 +192,7 @@ export default function SignUp() {
           </Form.Group>
           <Form.Group>
           <div className='text-center'>
-              <Link id="user-signUp" to="/goalsetter">
+              <Link id="user-signUp" to="/goal">
               <Button variant="success" type="submit" disabled={!allValid}>
               Sign Up
               </Button>

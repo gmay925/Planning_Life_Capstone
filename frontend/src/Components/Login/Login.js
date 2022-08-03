@@ -8,18 +8,19 @@ import './Login.css';
 import NavBar from '../NavBar/NavBar';
 
 async function submitLogin(body) {
-  const res = await fetch('/login', {
+  const res = await fetch('http://localhost:3001/login', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json'},
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   });
 
+  const json = await res.json();
+
   if (res.ok) {
-    localStorage.setItem('loggedIn', 'true');
+    localStorage.setItem('loggedIn', true);
     return true;
   }
 
-  const json = await res.json();
   throw json;
 }
 

@@ -131,7 +131,7 @@ router.post('/login', async (req, res) => {
     }); // something was wrong with the submitted data, tell client
   }
 
-  const user = await User.findOne({ email, password });
+  const user = await User.findOne({ email });
 
   if (!user) {
     return res.status(401).json({
@@ -161,8 +161,6 @@ router.post('/logout', async (req, res) => {
     message: 'Logged Out',
   });
 });
-
-
 
 
 

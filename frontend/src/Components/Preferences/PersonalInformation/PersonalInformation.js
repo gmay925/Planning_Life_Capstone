@@ -34,6 +34,18 @@ export default function PersonalInformation() {
     }
     throw json;
   };
+  useEffect(() => {
+    getPersonalInfo().then((data) => {
+      setName(data.name);
+      setEmail(data.email);
+      setPhoneNumber(data.phoneNumber);
+      setAddress(data.address || '');
+    }).catch((error) => {
+      if (error.status === 401) {
+        navigate('/logout');
+      }
+    });
+  }, [navigate]);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -49,19 +61,6 @@ export default function PersonalInformation() {
       navigate('/logout');
     }
   };
-
-  useEffect(() => {
-    getPersonalInfo().then((data) => {
-      setName(data.name);
-      setEmail(data.email);
-      setPhoneNumber(data.phoneNumber);
-      setAddress(data.address || '');
-    }).catch((error) => {
-      if (error.status === 401) {
-        navigate('/logout');
-      }
-    });
-  }, [navigate]);
 
   return (
     <Container className="personalInfo-main">

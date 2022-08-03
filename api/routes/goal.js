@@ -1,5 +1,5 @@
 const express = require('express');
-const Goals = require('../models/goal');
+// const Goals = require('../models/goal');
 const { protect } = require('../middleware/authMiddleware');
 const Goal = require('../models/goal');
 
@@ -12,10 +12,10 @@ router.get('/', (req, res) => {
 });
 
 router.put('/', async (req, res) => {
-  const { goals } = req.body;
+  const { goal } = req.body;
 
   try {
-    await req.user.update({ goals: [...new Set(goals)] });
+    await req.user.update({ goals: [...new Set(goal)] });
     return res.status(200).json({ success: true });
   } catch (e) {
     return res.status(500).json({
